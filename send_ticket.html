@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MISO HELP PAGE | Send Ticket</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Segoe UI', Arial, sans-serif;
+      background: linear-gradient(135deg, #1a237e 0%, #283593 50%, #1565c0 100%);
+      min-height: 100vh;
+      color: #fff;
+    }
+
+    /* ── NAVBAR ── */
+    .navbar {
+      background: rgba(0,0,0,0.35);
+      backdrop-filter: blur(6px);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 32px;
+      border-bottom: 2px solid rgba(255,255,255,0.15);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .navbar .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .navbar .brand img { height: 52px; border-radius: 6px; }
+    .navbar .brand-text { font-size: 1.3rem; font-weight: 700; letter-spacing: 1px; }
+    .nav-links { display: flex; gap: 10px; }
+    .nav-btn {
+      background: rgba(255,255,255,0.15);
+      color: #fff;
+      border: 1px solid rgba(255,255,255,0.3);
+      padding: 8px 18px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 0.9rem;
+      text-decoration: none;
+      transition: background 0.2s;
+    }
+    .nav-btn:hover { background: rgba(255,255,255,0.3); }
+
+    /* ── PAGE TITLE ── */
+    .page-title {
+      text-align: center;
+      padding: 36px 20px 10px;
+    }
+    .page-title h1 { font-size: 2rem; font-weight: 800; text-shadow: 0 2px 8px rgba(0,0,0,0.4); }
+    .page-title p { margin-top: 8px; color: rgba(255,255,255,0.75); }
+
+    /* ── FORM CARD ── */
+    .form-card {
+      background: rgba(255,255,255,0.1);
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(255,255,255,0.2);
+      border-radius: 16px;
+      max-width: 680px;
+      margin: 24px auto 60px;
+      padding: 36px 40px;
+    }
+
+    .form-group { margin-bottom: 18px; }
+    .form-group label {
+      display: block;
+      font-size: 0.88rem;
+      font-weight: 600;
+      margin-bottom: 6px;
+      color: rgba(255,255,255,0.9);
+    }
+    .form-group label .req { color: #ff6b6b; margin-left: 3px; }
+
+    .form-row { display: flex; gap: 16px; }
+    .form-row .form-group { flex: 1; }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="tel"],
+    select,
+    textarea {
+      width: 100%;
+      padding: 11px 14px;
+      border-radius: 8px;
+      border: 1.5px solid rgba(255,255,255,0.3);
+      background: rgba(255,255,255,0.12);
+      color: #fff;
+      font-size: 0.95rem;
+      outline: none;
+      transition: border-color 0.2s, background 0.2s;
+    }
+    input::placeholder, textarea::placeholder { color: rgba(255,255,255,0.5); }
+    input:focus, select:focus, textarea:focus {
+      border-color: #42a5f5;
+      background: rgba(255,255,255,0.2);
+    }
+    input.error-field, select.error-field, textarea.error-field {
+      border-color: #ff6b6b !important;
+    }
+    select option { background: #1a237e; color: #fff; }
+    textarea { resize: vertical; min-height: 110px; }
+
+    /* ── VALIDATION MESSAGES ── */
+    .field-error {
+      color: #ff6b6b;
+      font-size: 0.8rem;
+      margin-top: 4px;
+      display: none;
+    }
+    .field-error.visible { display: block; }
+
+    /* ── ALERT BANNER ── */
+    .alert {
+      border-radius: 8px;
+      padding: 12px 16px;
+      margin-bottom: 20px;
+      font-size: 0.92rem;
+      font-weight: 600;
+      display: none;
+    }
+    .alert.visible { display: flex; align-items: center; gap: 10px; }
+    .alert-error { background: rgba(211,47,47,0.35); border: 1px solid #ef5350; }
+    .alert-success { background: rgba(46,125,50,0.35); border: 1px solid #66bb6a; }
+
+    /* ── SUBMIT BUTTON ── */
+    .btn-submit {
+      width: 100%;
+      padding: 13px;
+      background: #1976d2;
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      font-size: 1rem;
+      font-weight: 700;
+      cursor: pointer;
+      letter-spacing: 0.5px;
+      transition: background 0.2s, transform 0.1s;
+      margin-top: 6px;
+    }
+    .btn-submit:hover { background: #1565c0; transform: translateY(-1px); }
+    .btn-submit:active { transform: translateY(0); }
+
+    .footer {
+      text-align: center;
+      padding: 18px;
+      font-size: 0.82rem;
+      color: rgba(255,255,255,0.5);
+      border-top: 1px solid rgba(255,255,255,0.1);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <div class="brand">
+      <img src="MISO logo.jpg" alt="MISO Logo">
+      <span class="brand-text">MISO HELP PAGE</span>
+    </div>
+    <div class="nav-links">
+      <a href="index.html" class="nav-btn">🏠 Home</a>
+      <a href="javascript:history.go(-1)" class="nav-btn">← Back</a>
+    </div>
+  </nav>
+
+  <!-- PAGE TITLE -->
+  <div class="page-title">
+    <h1>🎫 Send a Ticket</h1>
+    <p>Fill in the form below to submit your IT support request</p>
+  </div>
+
+  <!-- FORM CARD -->
+  <div class="form-card">
+
+    <!-- Alert banner (shown on JS validation failure) -->
+    <div class="alert alert-error" id="formAlert">
+      <span>⚠️</span>
+      <span id="formAlertMsg">Please fill in all required fields correctly.</span>
+    </div>
+
+    <form id="ticketForm" action="create.php" method="post" novalidate>
+
+      <div class="form-group">
+        <label>Problem / Issue <span class="req">*</span></label>
+        <input type="text" name="issue" id="issue" placeholder="e.g. Printer not working">
+        <div class="field-error" id="err-issue">Please describe the problem.</div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label>First Name <span class="req">*</span></label>
+          <input type="text" name="fname" id="fname" placeholder="First Name">
+          <div class="field-error" id="err-fname">First name is required.</div>
+        </div>
+        <div class="form-group">
+          <label>Last Name <span class="req">*</span></label>
+          <input type="text" name="lname" id="lname" placeholder="Last Name">
+          <div class="field-error" id="err-lname">Last name is required.</div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Email Address <span class="req">*</span></label>
+        <input type="email" name="email" id="email" placeholder="you@example.com">
+        <div class="field-error" id="err-email">Enter a valid email address.</div>
+      </div>
+
+      <div class="form-group">
+        <label>Department <span class="req">*</span></label>
+        <select name="dept" id="dept">
+          <option value="">-- Select a Department --</option>
+          <option value="1">College of Education</option>
+          <option value="2">College of Agriculture</option>
+          <option value="3">College of Forestry</option>
+          <option value="4">College of Hospitality and Tourism</option>
+          <option value="5">College of Arts and Science</option>
+          <option value="6">Registrar's Office</option>
+          <option value="7">Administrative Office</option>
+          <option value="8">Cashier's / Accounting Office</option>
+          <option value="9">College of Technology and Engineering</option>
+        </select>
+        <div class="field-error" id="err-dept">Please select your department.</div>
+      </div>
+
+      <div class="form-group">
+        <label>Contact Number <span class="req">*</span></label>
+        <input type="tel" name="phone_no" id="phone_no" placeholder="e.g. 09171234567">
+        <div class="field-error" id="err-phone">Enter a valid contact number (digits only, 7–15 characters).</div>
+      </div>
+
+      <div class="form-group">
+        <label>Priority Level <span class="req">*</span></label>
+        <select name="priority" id="priority">
+          <option value="Normal">Normal</option>
+          <option value="High">High</option>
+          <option value="Urgent">Urgent</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label>Problem Description <span class="req">*</span></label>
+        <textarea name="desc" id="desc" placeholder="Describe your problem in detail..."></textarea>
+        <div class="field-error" id="err-desc">Please provide a description.</div>
+      </div>
+
+      <button type="submit" class="btn-submit">🚀 Send Ticket</button>
+    </form>
+  </div>
+
+  <div class="footer">&copy; 2026 MISO Help Page &mdash; IT Support Portal</div>
+
+  <script>
+    const form = document.getElementById('ticketForm');
+
+    function showError(id, inputId) {
+      document.getElementById(id).classList.add('visible');
+      document.getElementById(inputId).classList.add('error-field');
+    }
+    function clearError(id, inputId) {
+      document.getElementById(id).classList.remove('visible');
+      document.getElementById(inputId).classList.remove('error-field');
+    }
+
+    // Live clear on input
+    ['issue','fname','lname','email','dept','phone_no','desc'].forEach(function(field) {
+      const el = document.getElementById(field);
+      if (!el) return;
+      el.addEventListener('input', function() {
+        clearError('err-' + (field === 'phone_no' ? 'phone' : field), field);
+        document.getElementById('formAlert').classList.remove('visible');
+      });
+      el.addEventListener('change', function() {
+        clearError('err-' + (field === 'phone_no' ? 'phone' : field), field);
+      });
+    });
+
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+      let valid = true;
+
+      const issue = document.getElementById('issue').value.trim();
+      const fname = document.getElementById('fname').value.trim();
+      const lname = document.getElementById('lname').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const dept  = document.getElementById('dept').value;
+      const phone = document.getElementById('phone_no').value.trim();
+      const desc  = document.getElementById('desc').value.trim();
+
+      if (!issue) { showError('err-issue','issue'); valid = false; }
+      else clearError('err-issue','issue');
+
+      if (!fname) { showError('err-fname','fname'); valid = false; }
+      else clearError('err-fname','fname');
+
+      if (!lname) { showError('err-lname','lname'); valid = false; }
+      else clearError('err-lname','lname');
+
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!email || !emailRegex.test(email)) { showError('err-email','email'); valid = false; }
+      else clearError('err-email','email');
+
+      if (!dept) { showError('err-dept','dept'); valid = false; }
+      else clearError('err-dept','dept');
+
+      const phoneRegex = /^\d{7,15}$/;
+      if (!phone || !phoneRegex.test(phone)) { showError('err-phone','phone_no'); valid = false; }
+      else clearError('err-phone','phone_no');
+
+      if (!desc) { showError('err-desc','desc'); valid = false; }
+      else clearError('err-desc','desc');
+
+      if (!valid) {
+        const alert = document.getElementById('formAlert');
+        document.getElementById('formAlertMsg').textContent = 'Please fill in all required fields correctly before submitting.';
+        alert.classList.add('visible');
+        alert.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        return;
+      }
+
+      form.submit();
+    });
+  </script>
+</body>
+</html>

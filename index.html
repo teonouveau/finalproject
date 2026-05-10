@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MISO HELP PAGE | Home</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Segoe UI', Arial, sans-serif;
+      background: linear-gradient(135deg, #1a237e 0%, #283593 50%, #1565c0 100%);
+      min-height: 100vh;
+      color: #fff;
+    }
+
+    /* ── NAVBAR ── */
+    .navbar {
+      background: rgba(0,0,0,0.35);
+      backdrop-filter: blur(6px);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 32px;
+      border-bottom: 2px solid rgba(255,255,255,0.15);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .navbar .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .navbar .brand img {
+      height: 52px;
+      border-radius: 6px;
+    }
+    .navbar .brand-text {
+      font-size: 1.3rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+      color: #fff;
+    }
+    .nav-links { display: flex; gap: 10px; }
+    .nav-btn {
+      background: rgba(255,255,255,0.15);
+      color: #fff;
+      border: 1px solid rgba(255,255,255,0.3);
+      padding: 8px 18px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 0.9rem;
+      text-decoration: none;
+      transition: background 0.2s;
+    }
+    .nav-btn:hover { background: rgba(255,255,255,0.3); }
+    .nav-btn.active { background: #1976d2; border-color: #42a5f5; }
+
+    /* ── HERO ── */
+    .hero {
+      text-align: center;
+      padding: 48px 20px 24px;
+    }
+    .hero h1 {
+      font-size: 2.4rem;
+      font-weight: 800;
+      letter-spacing: 2px;
+      text-shadow: 0 2px 8px rgba(0,0,0,0.4);
+    }
+    .hero p {
+      margin-top: 10px;
+      font-size: 1.05rem;
+      color: rgba(255,255,255,0.8);
+    }
+
+    /* ── MENU CARDS ── */
+    .menu-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      max-width: 900px;
+      margin: 32px auto 60px;
+      padding: 0 24px;
+    }
+    @media (max-width: 640px) {
+      .menu-grid { grid-template-columns: 1fr; }
+    }
+    @media (min-width: 641px) and (max-width: 900px) {
+      .menu-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    .menu-card {
+      background: rgba(255,255,255,0.1);
+      border: 1px solid rgba(255,255,255,0.2);
+      border-radius: 14px;
+      padding: 32px 20px;
+      text-align: center;
+      text-decoration: none;
+      color: #fff;
+      transition: transform 0.2s, background 0.2s, box-shadow 0.2s;
+      backdrop-filter: blur(4px);
+    }
+    .menu-card:hover {
+      transform: translateY(-6px);
+      background: rgba(255,255,255,0.2);
+      box-shadow: 0 12px 32px rgba(0,0,0,0.3);
+    }
+    .menu-card .icon {
+      font-size: 2.8rem;
+      margin-bottom: 14px;
+      display: block;
+    }
+    .menu-card h2 {
+      font-size: 1.15rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+    .menu-card p {
+      font-size: 0.88rem;
+      color: rgba(255,255,255,0.75);
+      line-height: 1.5;
+    }
+
+    /* ── FOOTER ── */
+    .footer {
+      text-align: center;
+      padding: 18px;
+      font-size: 0.82rem;
+      color: rgba(255,255,255,0.5);
+      border-top: 1px solid rgba(255,255,255,0.1);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <div class="brand">
+      <img src="MISO logo.jpg" alt="MISO Logo">
+      <span class="brand-text">MISO HELP PAGE</span>
+    </div>
+    <div class="nav-links">
+      <a href="index.html" class="nav-btn active">🏠 Home</a>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <div class="hero">
+    <h1>IT Support Portal</h1>
+    <p>Select an option below to get started</p>
+  </div>
+
+  <!-- MENU CARDS -->
+  <div class="menu-grid">
+    <a href="send_ticket.html" class="menu-card">
+      <span class="icon">🎫</span>
+      <h2>Create a Ticket</h2>
+      <p>File an IT support ticket for your concern</p>
+    </a>
+    <a href="search.php" class="menu-card">
+      <span class="icon">🔍</span>
+      <h2>Search a Ticket</h2>
+      <p>Look up your ticket status and details</p>
+    </a>
+    <a href="delete.php" class="menu-card">
+      <span class="icon">🗑️</span>
+      <h2>Delete a Ticket</h2>
+      <p>Remove an existing ticket by ID</p>
+    </a>
+    <a href="search.php" class="menu-card" style="border-color:rgba(255,167,38,0.5);">
+      <span class="icon">✏️</span>
+      <h2>Update a Ticket</h2>
+      <p>Search your ticket, then edit and save changes</p>
+    </a>
+    <a href="diy_corner.html" class="menu-card">
+      <span class="icon">🔧</span>
+      <h2>DIY Corner</h2>
+      <p>Add your self-troubleshooting guides here</p>
+    </a>
+    <a href="viewguide.php" class="menu-card">
+      <span class="icon">📚</span>
+      <h2>Troubleshooting Guides</h2>
+      <p>Browse the self-help guide repository</p>
+    </a>
+  </div>
+
+  <div class="footer">&copy; 2026 MISO Help Page &mdash; IT Support Portal</div>
+
+</body>
+</html>

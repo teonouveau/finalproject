@@ -1,0 +1,231 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MISO HELP PAGE | DIY Corner</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: "Segoe UI", Arial, sans-serif;
+      background: linear-gradient(135deg, #1a237e 0%, #283593 50%, #1565c0 100%);
+      min-height: 100vh; color: #fff;
+    }
+    .navbar {
+      background: rgba(0,0,0,0.35); backdrop-filter: blur(6px);
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 12px 32px; border-bottom: 2px solid rgba(255,255,255,0.15);
+      position: sticky; top: 0; z-index: 100;
+    }
+    .brand { display: flex; align-items: center; gap: 12px; }
+    .brand img { height: 52px; border-radius: 6px; }
+    .brand-text { font-size: 1.3rem; font-weight: 700; letter-spacing: 1px; }
+    .nav-links { display: flex; gap: 10px; }
+    .nav-btn {
+      background: rgba(255,255,255,0.15); color: #fff;
+      border: 1px solid rgba(255,255,255,0.3); padding: 8px 18px;
+      border-radius: 6px; cursor: pointer; font-size: 0.9rem;
+      text-decoration: none; transition: background 0.2s;
+    }
+    .nav-btn:hover { background: rgba(255,255,255,0.3); }
+    /* hero */
+    .page-title { text-align: center; padding: 36px 20px 10px; }
+    .page-title h1 { font-size: 2rem; font-weight: 800; text-shadow: 0 2px 8px rgba(0,0,0,0.4); }
+    .page-title p  { margin-top: 8px; color: rgba(255,255,255,0.75); }
+    /* quick-links */
+    .quick-links {
+      display: flex; justify-content: center; gap: 12px;
+      flex-wrap: wrap; margin: 18px 20px 0;
+    }
+    .ql-btn {
+      background: rgba(255,255,255,0.12); color: #fff;
+      border: 1px solid rgba(255,255,255,0.25); padding: 9px 20px;
+      border-radius: 8px; text-decoration: none; font-size: 0.9rem;
+      font-weight: 600; transition: background 0.2s;
+    }
+    .ql-btn:hover { background: rgba(255,255,255,0.25); }
+    .ql-btn.primary { background: #1976d2; border-color: #42a5f5; }
+    .ql-btn.primary:hover { background: #1565c0; }
+    /* form card */
+    .form-card {
+      background: rgba(255,255,255,0.1); backdrop-filter: blur(8px);
+      border: 1px solid rgba(255,255,255,0.2); border-radius: 16px;
+      max-width: 660px; margin: 28px auto 60px; padding: 36px 40px;
+    }
+    .section-label {
+      font-size: 0.75rem; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 1.5px; color: rgba(255,255,255,0.5);
+      margin-bottom: 20px; padding-bottom: 8px;
+      border-bottom: 1px solid rgba(255,255,255,0.12);
+    }
+    .form-group { margin-bottom: 20px; }
+    .form-group label {
+      display: block; font-size: 0.88rem; font-weight: 600;
+      margin-bottom: 6px; color: rgba(255,255,255,0.9);
+    }
+    .form-group label .req { color: #ff6b6b; margin-left: 3px; }
+    input[type="text"], select, textarea {
+      width: 100%; padding: 11px 14px; border-radius: 8px;
+      border: 1.5px solid rgba(255,255,255,0.3);
+      background: rgba(255,255,255,0.12); color: #fff; font-size: 0.95rem;
+      outline: none; transition: border-color 0.2s, background 0.2s;
+    }
+    input::placeholder, textarea::placeholder { color: rgba(255,255,255,0.45); }
+    input:focus, select:focus, textarea:focus {
+      border-color: #42a5f5; background: rgba(255,255,255,0.2);
+    }
+    input.error-field, select.error-field, textarea.error-field {
+      border-color: #ff6b6b !important;
+    }
+    select option { background: #1a237e; color: #fff; }
+    textarea { resize: vertical; min-height: 140px; }
+    .field-error { color: #ff6b6b; font-size: 0.8rem; margin-top: 4px; display: none; }
+    .field-error.visible { display: block; }
+    .hint { font-size: 0.8rem; color: rgba(255,255,255,0.5); margin-top: 5px; }
+    /* alert */
+    .alert {
+      border-radius: 8px; padding: 12px 16px; margin-bottom: 20px;
+      font-size: 0.92rem; font-weight: 600; display: none;
+    }
+    .alert.visible { display: flex; align-items: center; gap: 10px; }
+    .alert-error { background: rgba(211,47,47,0.35); border: 1px solid #ef5350; }
+    /* char counter */
+    .char-row { display: flex; justify-content: space-between; align-items: center; }
+    .char-count { font-size: 0.78rem; color: rgba(255,255,255,0.45); }
+    .char-count.warn { color: #ffa726; }
+    /* submit */
+    .btn-submit {
+      width: 100%; padding: 13px; background: #2e7d32; color: #fff;
+      border: none; border-radius: 8px; font-size: 1rem; font-weight: 700;
+      cursor: pointer; transition: background 0.2s; margin-top: 4px;
+    }
+    .btn-submit:hover { background: #1b5e20; }
+    .footer {
+      text-align: center; padding: 18px; font-size: 0.82rem;
+      color: rgba(255,255,255,0.5); border-top: 1px solid rgba(255,255,255,0.1);
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="navbar">
+    <div class="brand">
+      <img src="MISO logo.jpg" alt="MISO Logo">
+      <span class="brand-text">MISO HELP PAGE</span>
+    </div>
+    <div class="nav-links">
+      <a href="index.html" class="nav-btn">&#127968; Home</a>
+      <a href="javascript:history.go(-1)" class="nav-btn">&larr; Back</a>
+    </div>
+  </nav>
+
+  <div class="page-title">
+    <h1>&#128295; DIY Corner</h1>
+    <p>Share your self-help troubleshooting knowledge with the community</p>
+  </div>
+
+  <div class="quick-links">
+    <a href="viewguide.php" class="ql-btn primary">&#128218; Browse All Guides</a>
+    <a href="viewguide.php?search=" class="ql-btn">&#128269; Search Guides</a>
+  </div>
+
+  <div class="form-card">
+
+    <div class="section-label">&#10133; Add a New Troubleshooting Guide</div>
+
+    <div class="alert alert-error" id="formAlert">
+      <span>&#9888;&#65039;</span>
+      <span id="formAlertMsg">Please fill in all required fields.</span>
+    </div>
+
+    <form id="diyForm" action="diy.php" method="post" novalidate>
+
+      <div class="form-group">
+        <label for="a">Problem / Issue Title <span class="req">*</span></label>
+        <input type="text" name="a" id="a"
+               placeholder="e.g. Cannot connect to Wi-Fi"
+               maxlength="150">
+        <div class="field-error" id="err-a">Problem title is required.</div>
+      </div>
+
+      <div class="form-group">
+        <label for="cat">Category <span class="req">*</span></label>
+        <select name="cat" id="cat">
+          <option value="">-- Select a Category --</option>
+          <option value="Network">&#127760; Network &amp; Connectivity</option>
+          <option value="Hardware">&#128421; Hardware</option>
+          <option value="Software">&#128187; Software &amp; OS</option>
+          <option value="Printer">&#128424; Printer &amp; Peripherals</option>
+          <option value="Email">&#128140; Email &amp; Communication</option>
+          <option value="Security">&#128274; Security &amp; Accounts</option>
+          <option value="Other">&#128196; Other</option>
+        </select>
+        <div class="field-error" id="err-cat">Please select a category.</div>
+      </div>
+
+      <div class="form-group">
+        <div class="char-row">
+          <label for="b">Troubleshooting Instructions <span class="req">*</span></label>
+          <span class="char-count" id="charCount">0 / 2000</span>
+        </div>
+        <textarea name="b" id="b" maxlength="2000"
+          placeholder="Step 1: Check if the cable is plugged in.&#10;Step 2: Restart the device.&#10;Step 3: ..."></textarea>
+        <div class="field-error" id="err-b">Troubleshooting instructions are required.</div>
+        <div class="hint">Be specific. Use numbered steps for clarity.</div>
+      </div>
+
+      <button type="submit" class="btn-submit">&#10133; Submit Guide</button>
+    </form>
+  </div>
+
+  <div class="footer">&copy; 2026 MISO Help Page &mdash; IT Support Portal</div>
+
+  <script>
+    // char counter
+    var textarea = document.getElementById("b");
+    var counter  = document.getElementById("charCount");
+    textarea.addEventListener("input", function() {
+      var len = this.value.length;
+      counter.textContent = len + " / 2000";
+      counter.className = "char-count" + (len > 1800 ? " warn" : "");
+    });
+
+    // validation helpers
+    function showErr(errId, inputId) {
+      document.getElementById(errId).classList.add("visible");
+      document.getElementById(inputId).classList.add("error-field");
+    }
+    function clearErr(errId, inputId) {
+      document.getElementById(errId).classList.remove("visible");
+      document.getElementById(inputId).classList.remove("error-field");
+    }
+
+    ["a","cat","b"].forEach(function(id) {
+      var el = document.getElementById(id);
+      el.addEventListener("input",  function() { clearErr("err-"+id, id); document.getElementById("formAlert").classList.remove("visible"); });
+      el.addEventListener("change", function() { clearErr("err-"+id, id); document.getElementById("formAlert").classList.remove("visible"); });
+    });
+
+    document.getElementById("diyForm").addEventListener("submit", function(e) {
+      e.preventDefault();
+      var valid = true;
+      var a   = document.getElementById("a").value.trim();
+      var cat = document.getElementById("cat").value;
+      var b   = document.getElementById("b").value.trim();
+
+      if (!a)   { showErr("err-a",   "a");   valid = false; } else clearErr("err-a",   "a");
+      if (!cat) { showErr("err-cat", "cat"); valid = false; } else clearErr("err-cat", "cat");
+      if (!b)   { showErr("err-b",   "b");   valid = false; } else clearErr("err-b",   "b");
+
+      if (!valid) {
+        var alertEl = document.getElementById("formAlert");
+        document.getElementById("formAlertMsg").textContent = "Please fill in all required fields before submitting.";
+        alertEl.classList.add("visible");
+        alertEl.scrollIntoView({ behavior: "smooth", block: "center" });
+        return;
+      }
+      this.submit();
+    });
+  </script>
+</body>
+</html>
