@@ -6,6 +6,7 @@ if ($connection->connect_error) {
 }
 
 // Ensure category column exists
+$connection->query("ALTER TABLE diy ADD COLUMN IF NOT EXISTS problem VARCHAR(255) NOT NULL DEFAULT ''");
 $connection->query("ALTER TABLE diy ADD COLUMN IF NOT EXISTS category VARCHAR(60) NOT NULL DEFAULT 'Other'");
 
 // ── Read filter params ─────────────────────────────────────────────────────
